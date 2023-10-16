@@ -15,11 +15,14 @@ const renderAs = computed(() => {
 </script>
 
 <template>
-  <component :is="renderAs" :href="props.href" :disabled="props.disabled">
+  <component
+    style="text-align: center"
+    :is="renderAs"
+    :href="props.href"
+    :disabled="props.disabled"
+  >
     <component v-if="!props.loading" :is="props.iconLeft" />
-    <span v-if="!props.loading">
-      <slot />
-    </span>
+    <span v-if="!props.loading"> -<slot />- </span>
 
     <component :is="props.iconRight" v-if="!props.loading" />
     <span v-if="props.loading">Loading...</span>
