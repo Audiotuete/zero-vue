@@ -22,7 +22,7 @@ const renderAs = computed(() => {
     :disabled="props.disabled"
   >
     <component v-if="!props.loading" :is="props.iconLeft" />
-    <span v-if="!props.loading"> -<slot />- </span>
+    <span style="font-weight: bold" v-if="!props.loading"><slot /></span>
 
     <component :is="props.iconRight" v-if="!props.loading" />
     <span v-if="props.loading">Loading...</span>
