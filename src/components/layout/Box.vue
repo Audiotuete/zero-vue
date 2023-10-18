@@ -3,13 +3,17 @@ import { computed, type StyleValue } from 'vue'
 
 const props = defineProps<Props>()
 interface Props {
+  h?: string
+  w?: string
+  m?: string
+  p?: string
   row?: boolean
   reverse?: boolean
   wrap?: boolean
   justify?: 'center' | 'flex-start' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly'
   align?: 'center' | 'flex-start' | 'flex-end'
   flex?: string
-  type?: 'header' | 'footer' | 'main' | 'article' | 'section' | 'aside'
+  as?: 'header' | 'footer' | 'main' | 'article' | 'section' | 'aside'
 }
 const direction = computed(() => {
   const dir = props.row ? 'row' : 'column'
@@ -22,7 +26,7 @@ const wrapIt = computed(() => {
 })
 
 const renderAs = computed(() => {
-  return props.type ? props.type : 'div'
+  return props.as ? props.as : 'div'
 })
 </script>
 
@@ -36,7 +40,11 @@ const renderAs = computed(() => {
         justifyContent: props.justify,
         alignItems: props.align,
         flexWrap: wrapIt,
-        flex: props.flex
+        flex: props.flex,
+        margin: props.m,
+        padding: props.p,
+        height: props.h,
+        width: props.w
       } as StyleValue
     "
   >
@@ -52,8 +60,8 @@ const renderAs = computed(() => {
   display: flex;
   position: relative;
   width: 100%;
-  padding: 10px;
   height: 100%;
+  overflow: auto;
   border: 1px solid black;
 }
 

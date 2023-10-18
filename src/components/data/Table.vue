@@ -26,7 +26,6 @@ function digForValue(row: any, keys: string[]): string {
     <tr>
       <th v-for="{ name } in props.tableHeaders">{{ name }}</th>
     </tr>
-
     <tr v-for="row in data" draggable="false" :ondragstart="() => {}" :ondragover="() => {}">
       <td v-for="{ key } in props.tableHeaders">{{ digForValue(row, key.split('.')) }}</td>
     </tr>

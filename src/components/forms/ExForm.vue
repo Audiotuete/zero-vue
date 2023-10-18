@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Button from '@/components/Button.vue'
-import FormFieldInput from '@/components/Forms/FormFieldInput.vue'
-import FormField from '@/components/Forms/FormField.vue'
+import Button from '@/components/forms/Button.vue'
+import FormFieldInput from '@/components/forms/FormFieldInput.vue'
+import FormField from '@/components/forms/FormField.vue'
 
 interface Fields {
   name: string
