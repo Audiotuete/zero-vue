@@ -5,9 +5,9 @@ const props = withDefaults(defineProps<Props>(), {
   lineHeight: '1.5'
 })
 interface Props {
-  size?: string
+  fontSize?: string
   color?: string
-  align?: 'center' | 'right' | 'left' | 'justify'
+  textAlign?: 'center' | 'right' | 'left' | 'justify'
   transform?: 'none' | 'capitalize' | 'uppercase' | 'lowercase' | 'full-width' | 'full-size-kana'
   inline?: boolean
   hyphens?: boolean
@@ -28,10 +28,10 @@ const hyphenate = computed(() => {
     :is="renderAs"
     :style="{
       color: props.color,
-      fontSize: props.size,
+      fontSize: props.fontSize,
       lineHeight: props.lineHeight,
       hyphens: hyphenate,
-      textAlign: props.align,
+      textAlign: props.textAlign,
       textTransform: props.transform
     }"
   >

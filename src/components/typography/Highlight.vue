@@ -8,7 +8,7 @@ const slots = defineSlots<{
 const props = defineProps<Props>()
 
 interface Props {
-  size?: string
+  fontSize?: string
   color?: string
   transform?: 'none' | 'capitalize' | 'uppercase' | 'lowercase' | 'full-width' | 'full-size-kana'
 
@@ -50,7 +50,7 @@ function nestSlot(tags: string[]): VNode {
   } else {
     return h(
       'span',
-      { style: { color: props.color, fontSize: props.size, textTransform: props.transform } },
+      { style: { color: props.color, fontSize: props.fontSize, textTransform: props.transform } },
       slots.default()
     )
   }
