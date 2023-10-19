@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { useSlots, h, computed, type VNode } from 'vue'
+import { h, computed, type VNode } from 'vue'
+
+const slots = defineSlots<{
+  default(): VNode
+}>()
 
 const props = defineProps<Props>()
 
@@ -39,15 +43,15 @@ const mapPropsToTags = (properties: Props) => {
   return tags
 }
 
+// Nesting the <slot> inside multiple HTML tags with Recursion
 function nestSlot(tags: string[]): VNode {
-  // Nesting the <slot> inside multiple HTML tags with Recursion
   if (tags.length > 0) {
     return h(tags.shift() as string, nestSlot(tags))
   } else {
     return h(
       'span',
       { style: { color: props.color, fontSize: props.size, textTransform: props.transform } },
-      useSlots().default!()
+      slots.default()
     )
   }
 }
