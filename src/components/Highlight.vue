@@ -1,39 +1,64 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { useSlots, h, computed, type VNode } from 'vue'
 
 const props = defineProps<Props>()
+
 interface Props {
-  bold?: boolean
-  italic?: boolean
-  underline?: boolean
-  strike?: boolean
+  size?: string
+  color?: string
+  transform?: 'none' | 'capitalize' | 'uppercase' | 'lowercase' | 'full-width' | 'full-size-kana'
+
+  bold?: boolean // <strong>
+  italic?: boolean // <em>
+  code?: boolean // <code>
+  strike?: boolean // <s>
+  underline?: boolean // <u>
+  sup?: boolean // <sup>
+  sub?: boolean // <sub>
+  mark?: boolean // <mark>
 }
-const renderAs = computed(() => {
-  if (props.bold) {
-    return 'strong'
-  } else if (props.italic) {
-    return 'em'
-  } else if (props.strike) {
-    return 's'
-  } else {
-    return 'span'
+
+const mapPropsToTags = (properties: Props) => {
+  const tagMap: any = {
+    bold: 'strong',
+    italic: 'em',
+    code: 'code',
+    strike: 's',
+    underline: 'u',
+    sup: 'sup',
+    sub: 'sub',
+    mark: 'mark'
   }
+
+  const tags = []
+  for (let prop in properties) {
+    if (typeof properties[prop as keyof typeof props] == 'boolean') {
+      properties[prop as keyof typeof props] && tags.push(tagMap[prop])
+    }
+  }
+  return tags
+}
+
+function nestSlot(tags: string[]): VNode {
+  // Nesting the <slot> inside multiple HTML tags with Recursion
+  if (tags.length > 0) {
+    return h(tags.shift() as string, nestSlot(tags))
+  } else {
+    return h(
+      'span',
+      { style: { color: props.color, fontSize: props.size, textTransform: props.transform } },
+      useSlots().default!()
+    )
+  }
+}
+
+const WrappedSlot = computed(() => {
+  return nestSlot(mapPropsToTags(props))
 })
 </script>
 
 <template>
-  <component
-    :is="renderAs"
-    :class="{
-      underline: props.underline
-    }"
-  >
-    <slot />
-  </component>
+  <WrappedSlot />
 </template>
 
-<style scoped>
-.underline {
-  text-decoration: underline;
-}
-</style>
+<style scoped></style>
