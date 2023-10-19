@@ -12,6 +12,7 @@ interface Props {
   tableHeaders?: TableHeaders[]
 }
 
+// Accessing nested object properties with Recursion
 function digForValue(row: any, keys: string[]): string {
   if (keys.length > 1) {
     return digForValue(row[keys.shift()!], keys)
