@@ -98,7 +98,9 @@ onMounted(() => {
         paddingRight: !props.pr ? props.p : props.pr,
         paddingLeft: !props.pl ? props.p : props.pl,
         maxHeight: props.h,
-        maxWidth: props.w
+        maxWidth: props.w,
+        height: props.h,
+        width: props.w
       } as StyleValue
     "
   >
