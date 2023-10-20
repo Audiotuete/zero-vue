@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import ExForm from './components/Forms/ExForm.vue'
+import Box from './components/layout/Box.vue'
+import Popup from './components/layout/Popup.vue'
 </script>
 
-<template><ExForm /></template>
+<template>
+  <Popup title="This is sparta" closeLabel="Jooo">
+    <Box name="10" m="0" p="0" w="300px" h="1000px"> </Box>
+  </Popup>
+</template>
