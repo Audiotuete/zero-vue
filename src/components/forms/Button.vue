@@ -7,6 +7,7 @@ interface Props {
   iconRight?: object
   loading?: boolean
   disabled?: boolean
+  type?: string
   href?: string
 }
 const renderAs = computed(() => {
@@ -20,6 +21,7 @@ const renderAs = computed(() => {
     :is="renderAs"
     :href="props.href"
     :disabled="props.disabled"
+    :type="renderAs === 'button' && props.type"
   >
     <component v-if="!props.loading" :is="props.iconLeft" />
     <span style="font-weight: bold" v-if="!props.loading"><slot /></span>
