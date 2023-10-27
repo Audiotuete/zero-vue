@@ -1,16 +1,16 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
 import ExForm from './components/forms/ExForm.vue'
 import Box from './components/layout/Box.vue'
 import AspectRatio from './components/layout/AsepectRatio.vue'
 import Button from './components/forms/Button.vue'
 import List from './components/data/List.vue'
 import ListItem from './components/data/ListItem.vue'
-import Text from './components/typography/Text.vue'
+import Text from './components/typo/Text.vue'
 import Link from './components/Link.vue'
-import Highlight from './components/typography/Highlight.vue'
+import Highlight from './components/typo/Highlight.vue'
 import Table from './components/data/Table.vue'
-
-import { ref } from 'vue'
 
 const list = ref([
   { id: 1, name: 'Peter', url: 'https://tallpad.com/series/tailwind' },
